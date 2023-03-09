@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from urllib.parse import parse_qsl, urljoin, urlparse
-
+import rospy
+from std_msgs.msg import String
 import RPi.GPIO as GPIO
 import time
 #HI_test
@@ -23,6 +24,9 @@ import paho.mqtt.client as paho
 
 led = LED(11)
 
+rospy.init_node('servo_node', anonymous=True)
+pub = rospy.Publisher('servo_topic', String, queue_size=10)
+rate = rospy.Rate(10) # 10Hz
 
 def angle_to_duty_cycle(angle):
     duty_cycle = SERVO_MIN + (angle / 180.0) * (SERVO_MAX - SERVO_MIN)
@@ -39,13 +43,18 @@ def on_message(mosq, obj, msg):
     print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
     if(msg.payload == b"payone"):    
         print("Payload One")
+        ros_msg = "payone"
         set_servo_angle(30)    
     elif(msg.payload == b"paytwo"):    
         print("Payload Two")
+        ros_msg = "paytwo"
         set_servo_angle(60)
     elif(msg.payload == b"reset"):    
         print("Latch Reset")
+        ros_msg = "reset"
         set_servo_angle(0)
+    pub.publish(ros_msg)
+    rate.sleep()
 
 def on_publish(mosq, obj, mid):
     print("mid: " + str(mid))
