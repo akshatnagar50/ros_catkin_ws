@@ -1,0 +1,8 @@
+prefix=/home/drocode/ros_catkin_ws/devel
+
+Name: rospy
+Description: Description of rospy
+Version: 1.15.15
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/drocode/ros_catkin_ws/devel_isolated/roslaunch/setup.sh
