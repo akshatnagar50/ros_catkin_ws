@@ -22,10 +22,11 @@ import os,sys
 
 import paho.mqtt.client as paho
 
-led = LED(11)
+
 
 rospy.init_node('servo_node', anonymous=True)
 pub = rospy.Publisher('servo_topic', String, queue_size=10)
+
 rate = rospy.Rate(10) # 10Hz
 
 def angle_to_duty_cycle(angle):
@@ -53,6 +54,9 @@ def on_message(mosq, obj, msg):
         print("Latch Reset")
         ros_msg = "reset"
         set_servo_angle(0)
+    elif(msg.payload == b"stop"):    
+        print("Stop pressed")
+        ros_msg = "stop"
     pub.publish(ros_msg)
     rate.sleep()
 
