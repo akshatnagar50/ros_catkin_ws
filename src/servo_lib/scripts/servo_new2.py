@@ -58,7 +58,17 @@ def on_message(mosq, obj, msg):
         print("Stop pressed")
         ros_msg = "stop"
    
-    pub.publish(ros_msg)
+    if(ros_msg == "stop"):
+        pub.publish(ros_msg)
+        time.sleep(1)
+        pub.publish(ros_msg)
+        time.sleep(1)
+        pub.publish(ros_msg)
+        time.sleep(1)
+        pub.publish(ros_msg)
+    else:
+        pub.publish(ros_msg)
+
     rate.sleep()
 
 def on_publish(mosq, obj, mid):
