@@ -57,8 +57,8 @@ def on_message(mosq, obj, msg):
     elif(msg.payload == b"stop"):    
         print("Stop pressed")
         ros_msg = "stop"
-    pub.publish(ros_msg)
-    time.sleep(3)
+  
+  
     rate.sleep()
 
 def on_publish(mosq, obj, mid):
@@ -90,5 +90,6 @@ while True:
     while rc == 0:
         import time   
         rc = mqttc.loop()
+        pub.publish(ros_msg)
         #time.sleep(0.5)
     print("rc: " + str(rc))
