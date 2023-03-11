@@ -3,7 +3,6 @@ from urllib.parse import parse_qsl, urljoin, urlparse
 import rospy
 from std_msgs.msg import String
 import RPi.GPIO as GPIO
-import time
 #HI_test
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
