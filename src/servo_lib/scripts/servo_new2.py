@@ -56,7 +56,6 @@ def on_message(mosq, obj, msg):
         set_servo_angle(0)
     elif(msg.payload == b"stop"):    
         print("Stop pressed")
-        set_servo_angle(0
         ros_msg = "stop"
     pub.publish(ros_msg)
     rate.sleep()
