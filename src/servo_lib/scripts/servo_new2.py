@@ -60,11 +60,11 @@ def on_message(mosq, obj, msg):
    
     if(ros_msg == "stop"):
         pub.publish(ros_msg)
-        time.sleep(1)
+        rospy.sleep(1)
         pub.publish(ros_msg)
-        time.sleep(1)
+        rospy.sleep(1)
         pub.publish(ros_msg)
-        time.sleep(1)
+        rospy.sleep(1)
         pub.publish(ros_msg)
     else:
         pub.publish(ros_msg)
