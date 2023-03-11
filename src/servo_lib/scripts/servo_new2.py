@@ -15,7 +15,7 @@ SERVO_MAX = 12.5
 servo = GPIO.PWM(18, SERVO_FREQ)
 servo.start(0)
 
-
+import time
 from time import sleep
 from gpiozero import LED
 import os,sys
@@ -57,18 +57,10 @@ def on_message(mosq, obj, msg):
     elif(msg.payload == b"stop"):    
         print("Stop pressed")
         ros_msg = "stop"
-   
-    if(ros_msg == "stop"):
+    
+    start_time = time.time()
+    while (time.time() - start_time) < 3:
         pub.publish(ros_msg)
-        rospy.sleep(1)
-        pub.publish(ros_msg)
-        rospy.sleep(1)
-        pub.publish(ros_msg)
-        rospy.sleep(1)
-        pub.publish(ros_msg)
-    else:
-        pub.publish(ros_msg)
-
     rate.sleep()
 
 def on_publish(mosq, obj, mid):
