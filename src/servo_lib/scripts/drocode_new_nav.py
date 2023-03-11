@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # -*- coding: utf-8 -*-
 
@@ -16,10 +16,11 @@ frame_centre = [320.,240.]
 pixel_threshold = 10
 
 #    Marker Coordinates
-
 #    x: -1.58653998375
 #    y: 0.0905971601605
         
+
+
 def servo_callback(data):
     rospy.loginfo("pubing vel")
     velocity_pub = rospy.Publisher("/mavros/setpoint_velocity/cmd_vel", TwistStamped, queue_size=10)
@@ -34,7 +35,7 @@ def servo_callback(data):
     t=time.time()
     while time.time()-t<5 and not rospy.is_shutdown():
         velocity_pub.publish(vel_to_diro)
-    while data!="Akash_data" and not rospy.is_shutdown():
+    while data!="payone" and not rospy.is_shutdown():
         continue
     rtl()
 def rtl():
