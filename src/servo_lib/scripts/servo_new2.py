@@ -87,9 +87,9 @@ mqttc.connect(url.hostname, url.port)
 
 rc = 0
 while True:
-    pub.publish(ros_msg)
     while rc == 0:
         import time   
         rc = mqttc.loop()
+        pub.publish(ros_msg)
         #time.sleep(0.5)
     print("rc: " + str(rc))
